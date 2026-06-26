@@ -1,6 +1,6 @@
 # Feed The DNA
 
-**Live site:** <https://jasonhuang24.github.io/feed-the-dna/>
+**Live site:** <https://feedthedna.com>
 
 Static website for the **Empower Humanity / Feed The DNA / DNActivate** ecosystem — a human-first community infrastructure platform based in Idaho.
 
@@ -23,4 +23,4 @@ Hand-coded static HTML/CSS/JS — no build step.
 
 ## Deploy
 
-Live on **GitHub Pages** at <https://jasonhuang24.github.io/feed-the-dna/> — deployed from the `main` branch (root), auto-publishes on every push. Works on any static host (Netlify, Cloudflare Pages, GitHub Pages); all asset filenames are lowercase for case-sensitive hosts.
+Live on **GitHub Pages** at the custom domain <https://feedthedna.com> (HTTPS enforced) — deployed from the `main` branch (root), auto-publishes on every push. The `CNAME` file sets the custom domain. Works on any static host (Netlify, Cloudflare Pages, GitHub Pages); all asset filenames are lowercase for case-sensitive hosts.
