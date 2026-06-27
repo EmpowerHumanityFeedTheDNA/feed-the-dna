@@ -1,6 +1,6 @@
 # Feed The DNA
 
-**Live site:** <feedthedna.com>
+**Live site:** <https://feedthedna.com/>
 
 Static website for the **Empower Humanity / Feed The DNA / DNActivate** ecosystem — a human-first community infrastructure platform based in Idaho.
 
