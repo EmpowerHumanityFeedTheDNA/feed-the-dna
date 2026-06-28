@@ -294,13 +294,15 @@ textarea:focus-visible, select:focus-visible {
     radial-gradient(680px 460px at 24% 26%, rgba(53,187,255,.5), transparent 62%),
     radial-gradient(620px 460px at 80% 74%, rgba(255,138,42,.42), transparent 64%);
 }
-/* Narrow / portrait: stack the banner ABOVE the copy instead of overlaying it.
-   The banners carry baked-in wordmarks, so text laid over the letterboxed image collides. */
-@media (max-aspect-ratio: 3/4) {
+/* When the window is NARROWER than the banner (aspect < 3:2, the banner's own
+   aspect), stack the banner ABOVE the copy instead of overlaying it. With cover,
+   a narrower window fills the height and locks the baked-in wordmark to center,
+   so overlaid text collides — stacking shows the full banner cleanly, copy below. */
+@media (max-aspect-ratio: 3/2) {
   .hero--photo {
     display: block;
     min-height: 0;
-    padding: calc(66.7vw + 1.25rem) 0 clamp(40px, 9vw, 72px); /* clear the banner; 66.7vw ≈ its height at 3:2 */
+    padding: calc(66.7vw + 1.25rem) 0 clamp(40px, 9vw, 72px); /* clear the banner; 66.7vw = its full-width height at 3:2 */
     background-size: 100% auto;        /* full-width banner at its natural height */
     background-position: top center;
     background-color: var(--bg-0);
@@ -319,6 +321,29 @@ textarea:focus-visible, select:focus-visible {
   background-image:
     linear-gradient(180deg, rgba(4,7,22,.30) 0%, rgba(4,7,22,.04) 38%, rgba(4,7,22,.58) 74%, rgba(4,7,22,.97) 100%),
     url('../assets/images/dnactivate.png');
+}
+/* DNActivate's three-line subtitle. Size it off viewport HEIGHT so it stays
+   compact on short/wide screens (clearing the banner's baked-in wordmark) yet
+   grows large and readable on tall 4K displays. */
+.wordmark--dna { font-size: clamp(1.45rem, 3.5vh, 2.55rem); }
+/* When the window is at least as wide as the banner (aspect >= 3:2), it overlays:
+   lift the baked-in wordmark into the upper band so the copy below never collides. */
+@media (min-aspect-ratio: 3/2) {
+  .hero--dnactivate { background-position: center 70%; }
+}
+/* Narrow landscape (narrower than the banner but not portrait): instead of the
+   stacked treatment, size the hero to the banner's own 3:2 so the full banner
+   shows uncropped, and overlay the copy on the lower art — no crop, no dead gap. */
+@media (min-aspect-ratio: 3/4) and (max-aspect-ratio: 3/2) {
+  .hero--dnactivate {
+    display: flex;
+    aspect-ratio: 3 / 2;
+    min-height: 0;
+    padding: clamp(40px, 6vh, 110px) 0 clamp(34px, 5vh, 80px);
+    background-size: cover;
+    background-position: center;
+    background-color: transparent;
+  }
 }
 
 /* Glass info card (used in two-col heroes) */
@@ -413,6 +438,13 @@ textarea:focus-visible, select:focus-visible {
 .campaign { padding: 0; overflow: hidden; }
 .campaign__media { aspect-ratio: 16 / 9; display: grid; place-items: center; background: var(--grad-soft); border-bottom: 1px solid var(--panel-brd); }
 .campaign__body { padding: 1.55rem 1.7rem 1.75rem; }
+
+/* ---- Founder timeline -------------------------------------------------- */
+.timeline { display: grid; gap: 1.5rem; margin: 1.6rem 0 0; padding-left: 1.7rem; border-left: 2px solid var(--panel-brd); max-width: 70ch; }
+.timeline__item { position: relative; }
+.timeline__item::before { content: ""; position: absolute; left: calc(-1.7rem - 6px); top: .4rem; width: 11px; height: 11px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 20%, transparent); }
+.timeline__year { font-family: var(--font-display); font-weight: 700; color: #fff; font-size: 1.15rem; margin-bottom: .3rem; }
+.timeline p { color: var(--ink-soft); margin: 0; }
 
 /* ---- Dark band --------------------------------------------------------- */
 .band { background: linear-gradient(180deg, rgba(22,10,51,.85), rgba(10,5,28,.92)); color: var(--ink); position: relative; overflow: hidden; border-block: 1px solid rgba(168,140,255,.12); }
