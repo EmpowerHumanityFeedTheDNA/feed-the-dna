@@ -302,7 +302,7 @@ textarea:focus-visible, select:focus-visible {
   .hero--photo {
     display: block;
     min-height: 0;
-    padding: calc(66.7vw + 1.25rem) 0 clamp(40px, 9vw, 72px); /* clear the banner; 66.7vw = its full-width height at 3:2 */
+    padding: calc(66.7vw + 2.75rem) 0 clamp(40px, 9vw, 72px); /* clear the banner + breathing room below the wordmark; 66.7vw = its full-width height at 3:2 */
     background-size: 100% auto;        /* full-width banner at its natural height */
     background-position: top center;
     background-color: var(--bg-0);
